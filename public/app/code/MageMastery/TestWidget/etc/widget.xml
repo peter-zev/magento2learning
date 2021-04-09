@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+    <widget id="magemastery_testwidget" class="MageMastery\TestWidget\Block\Widget\CustomWidget">
+
+        <label translate="true">Aaaa Custom Widget</label>
+        <description>Widget in Magento2</description>
+
+        <parameters>
+            <parameter name="title"  visible="true" xsi:type="text" sort_order="10">
+                <label>Title</label>
+            </parameter>
+            <parameter name="displayMode" xsi:type="select" visible="true" required="true" sort_order="20">
+                <label translate="true">Display Mode</label>
+                <options>
+                    <option name="default" value="0">
+                        <label>Choose a display mode</label>
+                    </option>
+                    <option name="allPages" value="1">
+                        <label>Show list of all CMS pages</label>
+                    </option>
+                    <option name="specificPages" value="2">
+                        <label>Show list of selected pages</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="data_options" xsi:type="multiselect" visible="true"
+                       source_model="MageMastery\TestWidget\Model\Config\Source\DataOptions" sort_order="40">
+                <label>Data Options</label>
+                <description>Select data options</description>
+                <depends>
+                    <parameter name="displayMode" value="1"/>
+                </depends>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -1,0 +1,12 @@
+<h1>My First Template</h1>
+<p>With Layout support</p>
+
+<h1 style="color: red">HELLLOOOOO :)</h1>
+<h5>Remember to clean cache everytime to see changes. bin/magento cache:clean</h5>
+
+
+<?php
+$productData = $block->getData('view_model');
+?>
+
+<h2><?= $productData->getSomething(); ?></h2>
