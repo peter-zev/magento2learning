@@ -7,14 +7,14 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $_product = $block->getProduct(); ?>
-<?php $stockQuantity = $block->getData('view_model') ; ?>
+<?php $stockQuantity = $block->getData('view_model'); ?>
 <?php $buttonTitle = __('Add to Cart'); ?>
 <?php if ($_product->isSaleable()) : ?>
     <div class="box-tocart">
         <div class="fieldset">
             <?php if ($block->shouldRenderQuantity()) : ?>
                 <div class="field qty">
-                    <button class="substract-item-quantity-button" type="button">-</button>
+                    <button name="qty-minus" class="substract-item-quantity-button" type="button">-</button>
                     <div class="control">
                         <input type="number"
                                name="qty"
@@ -26,13 +26,13 @@
                                data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
                         />
                     </div>
-                    <button class="add-item-quantity-button" type="button">+</button>
+                    <button name="qty-plus" class="add-item-quantity-button" type="button">+</button>
 
                     <?php if ($block->displayProductStockStatus()) : ?>
                         <?php if ($_product->isAvailable()) : ?>
                             <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
-                                <span><?= $block->escapeHtml(__('In stock')) ?></span>
-                                <span><?= $stockQuantity->getStockQty($_product->getSku()); ?> items available</span>
+                                <span>&#10003;<?= $block->escapeHtml(__('In stock')) ?></span>
+                                <span class="product-stock-quantity"><?= $stockQuantity->getStockQty($_product->getSku()); ?> items available</span>
                             </div>
                         <?php else : ?>
                             <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
@@ -42,12 +42,6 @@
                     <?php endif; ?>
 
                 </div>
-
-
-                <div>
-
-                </div>
-
 
             <?php endif; ?>
             <div class="actions">
@@ -69,12 +63,6 @@
             "Magento_Catalog/js/validate-product": {}
         }
     }
-
-
-
-
-
-
 
 
 </script>

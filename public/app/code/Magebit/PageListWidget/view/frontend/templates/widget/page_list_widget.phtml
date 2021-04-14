@@ -1,18 +1,24 @@
 <?php
 $pages = $block->getPages();
+$selectedPages = explode(',', $block->getData('data_options'));
 ?>
 
 
 <h1 style="font-weight: bold"><?php echo $this->getData('title'); ?></h1>
 <ul>
-    <?php foreach ($pages as $page) : ?>
+    <?php if ($this->getData('displayMode') === 'allPages'): ?>
+        <?php foreach ($pages as $page) : ?>
+            <li><a href="<?php echo $block->getPageUrl($page->getId()); ?>"> <?php echo $page->getTitle(); ?></a>
+            </li>
 
-        <li><a href="<?php echo $block->getPageUrl($page->getId()); ?>"> <?php echo $page->getTitle(); ?></a></li>
+        <?php endforeach; ?>
 
-    <?php endforeach; ?>
+    <?php elseif ($this->getData('displayMode') === 'specificPages') : ?>
+        <?php foreach ($selectedPages as $page) : ?>
+            <li><a href="<?php echo $block->getPageUrl($page); ?>"> <?php echo $page; ?></a>
+            </li>
+        <?php endforeach; ?>
+
+    <?php endif; ?>
 </ul>
 
-<?php
-
-
-echo print_r($this->getData('data_options'));
