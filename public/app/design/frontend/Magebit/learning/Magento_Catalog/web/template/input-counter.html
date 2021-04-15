@@ -1,0 +1,14 @@
+<div class="input-group">
+    <button data-bind="click: decreaseQty" class="substract-item-quantity-button">-</button>
+    <div class="control">
+        <input data-bind="value: qty"
+               type="number"
+               name="qty"
+               value="<? //= $block->getProductDefaultQty() * 1 ?>"
+               title="<? //= $block->escapeHtmlAttr(__('Qty')) ?>"
+               id="qty"
+               maxlength="12"
+               class="input-text qty"/>
+    </div>
+    <button data-bind="click: increaseQty" class="add-item-quantity-button">+</button>
+</div>

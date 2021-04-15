@@ -7,8 +7,19 @@ use Magento\Widget\Block\BlockInterface;
 
 class PageListWidget extends Template implements BlockInterface
 {
+    /**
+     * @var string
+     */
     protected $_template = "widget/page_list_widget.phtml";
 
+    /**
+     * PageListWidget constructor.
+     * @param Template\Context $context
+     * @param \Magento\Cms\Api\PageRepositoryInterface $pageRepositoryInterface
+     * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param array $data
+     */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Cms\Api\PageRepositoryInterface $pageRepositoryInterface,
@@ -23,8 +34,10 @@ class PageListWidget extends Template implements BlockInterface
         parent::__construct($context, $data);
     }
 
+
     /**
-     * Get Pages Collection from site.
+     * @return \Magento\Cms\Api\Data\PageInterface[]
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getPages()
     {
@@ -33,6 +46,10 @@ class PageListWidget extends Template implements BlockInterface
         return $pages;
     }
 
+    /**
+     * @param $pageId
+     * @return mixed
+     */
     public function getPageUrl($pageId)
     {
         return $this->_objectManager->create('Magento\Cms\Helper\Page')->getPageUrl($pageId);

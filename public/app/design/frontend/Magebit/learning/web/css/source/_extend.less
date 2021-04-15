@@ -18,7 +18,9 @@
   color: #fff;
 }
 
+// SIMPLE VIEW ONLY
 .magebit-product-simple-view {
+
   // Product view Add to Cart button styling
   #product-addtocart-button {
     background: #FF5501 0 0 no-repeat padding-box;
@@ -62,7 +64,9 @@
 
   /*
 
+
     Product view - product reviews summary style section
+
 
    */
 
@@ -92,17 +96,11 @@
     border-radius: 2px;
   }
 
-  // Product view upsell product styling
-  .upsell-products p {
-    font: normal normal bold 16px/22px Open Sans;
-    letter-spacing: 0;
-    color: #333333;
-    opacity: 1;
-  }
-
   /*
 
+
       Product view product quantity selection field
+
 
    */
 
@@ -119,7 +117,7 @@
     font: normal normal bold 14px/19px Open Sans;
   }
 
-  // Product view add product button
+  // Product view addToCart button
   .add-item-quantity-button {
     float: left;
     height: 52px;
@@ -169,8 +167,13 @@
     opacity: 1;
     padding-bottom: 21px;
   }
+
   /*
+
+
   Remaining product stock styling section
+
+
    */
 
   .product-info-main .stock.available {
@@ -199,25 +202,72 @@
 
   /*
 
+
   Related product/Upsell product styling section
+
 
    */
 
   // Product view related product styling
-  .related-products p {
-    font: normal normal 600 24px/33px Open Sans;
-    letter-spacing: 0;
-    color: #333333;
-    opacity: 1;
+  .related-products {
+    p {
+      font: normal normal 600 24px/33px Open Sans;
+      letter-spacing: 0;
+      color: #333333;
+      opacity: 1;
+    }
+
+    .product-items {
+      float: left;
+    }
+
+  }
+
+  .related-available {
+    .product-reviews-summary .reviews-actions a:nth-child(2) {
+
+      display: none;
+    }
+
+    .price {
+      font: normal normal bold 22px/30px Open Sans;
+      letter-spacing: 0;
+      color: #333333;
+      opacity: 1;
+    }
+  }
+
+  #related-product-addtocart-button {
+    background: #FF5501;
+    width: 100%;
+  }
+  #related-product-addtocart-button {
+    display: none;
+  }
+
+  @media only screen and (min-width: 1240px) {
+    .products-related .product-item {
+      width: 20%;
+    }
+
+    .products-related .product-item:hover #related-product-addtocart-button {
+      display: block;
+    }
+  }
+
+  .related-upsell-products-review .product-reviews-summary {
+    display: contents;
   }
 
   .product.name a {
     text-align: left;
     font: normal normal 600 16px/22px Open Sans;
   }
+
   .block.related .related-available .product-item-name {
     margin-left: 0;
   }
+
   .product-item-info {
     width: 90%;
   }
@@ -225,11 +275,39 @@
   .product-item .product-reviews-summary .reviews-actions {
     display: inline;
   }
-  #related-product-addtocart-button {
-    display: block;
+
+  .block .title {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #C2C2C2;
+    opacity: 1;
   }
-  .product-item-info:hover + #related-product-addtocart-button {
-    display: none;
+
+  // Product view Upsell product styling
+  .products-upsell {
+
+    .product-reviews-summary .reviews-actions a:nth-child(2) {
+      display: none;
+    }
+
+    .product-item {
+      width: 100%;
+    }
+
+    .product-item-info {
+      width: 100%;
+      display: flex;
+    }
+
+    .price {
+      font: normal normal 600 18px/24px Open Sans;
+      letter-spacing: 0;
+      color: #333333;
+      opacity: 1;
+    }
+
+    .product-item-details{
+      width: 100%;
+    }
   }
 
   .link-to-product {
@@ -239,39 +317,14 @@
     opacity: 1;
     background: #333333 0 0 no-repeat padding-box;
     border-radius: 2px;
-    padding: 6px 10px 5px 10px;
-  }
-
-  .block .title {
-    padding-bottom: 8px;
-    border-bottom: 1px solid #C2C2C2;
-    opacity: 1;
-  }
-
-  .products-upsell .product-item {
-    width: 100%;
-  }
-
-  .products-upsell .product-item-info {
-    width: 100%;
-    display: flex;
-  }
-
-  .products-related .product-items {
-    float: left;
-  }
-
-  .products-upsell .product-reviews-summary .reviews-actions a:nth-child(2) {
-    display: none;
-  }
-
-  .products-related .product-reviews-summary .reviews-actions a:nth-child(2) {
-    display: none;
+    padding: 7px 11px 7px 11px;
+    float: right;
   }
 
   .main .related {
     display: inline-block;
     margin-top: 80px;
+    width: 100%;
   }
 
   .products {

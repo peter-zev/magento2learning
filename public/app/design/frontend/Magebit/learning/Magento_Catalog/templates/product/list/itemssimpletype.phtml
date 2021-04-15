@@ -187,7 +187,7 @@ $shuffle ?>">
                             <?php if ($type == 'related' || $type == 'upsell') : ?>
                                 <li class="item product product-item" style="display: none;">
                             <?php else : ?>
-                                <li class="item product product-item">
+                                <li id="<?php if ($type == 'related') {echo "related-product-item" ;} ?>" class="item product product-item">
                             <?php endif; ?>
                             <div class="product-item-info <?= /* @noEscape */
                             $available ?>">
@@ -201,13 +201,11 @@ $shuffle ?>">
                                     <div class="related-upsell-products-review">
                                         <?= $block->getReviewsSummaryHtml($_item, false, true) ?>
                                     </div>
-                                    <?= /* @noEscape */$block->getProductPrice($_item) ?>
-
                                     <?php if ($type == 'upsell') : ?>
                                         <a class="link-to-product"
                                            href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">View Product</a>
                                     <?php endif; ?>
-
+                                    <?= /* @noEscape */$block->getProductPrice($_item) ?>
 
                                     <?php if ($type == 'related') : ?>
                                         <div class="actions">

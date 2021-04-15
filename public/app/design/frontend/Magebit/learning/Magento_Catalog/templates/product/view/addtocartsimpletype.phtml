@@ -13,26 +13,35 @@
     <div class="box-tocart">
         <div class="fieldset">
             <?php if ($block->shouldRenderQuantity()) : ?>
-                <div class="field qty">
-                    <button name="qty-minus" class="substract-item-quantity-button" type="button">-</button>
-                    <div class="control">
-                        <input type="number"
-                               name="qty"
-                               id="qty"
-                               min="0"
-                               value="<?= $block->getProductDefaultQty() * 1 ?>"
-                               title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
-                               class="input-text qty"
-                               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
-                        />
+                <div id="custom-qty" class="field qty" data-bind="scope: 'qty-counter'">
+                    <div  class="control">
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                        <script type="text/x-magento-init">
+                            {
+                                "#custom-qty": {
+                                    "Magento_Ui/js/core/app": {
+                                        "components": {
+                                            "qty-counter": {
+                                                "component": "qty-counter",
+                                                "config": {
+                                                    "qty": <?php echo $block->getProductDefaultQty() * 1 ?>,
+                                                    "stockLeft": <?= $stockQuantity->getStockQty($_product->getSku()); ?>
+                                                }
+                                            }
+                                         }
+                                    }
+                                }
+                            }
+                        </script>
                     </div>
-                    <button name="qty-plus" class="add-item-quantity-button" type="button">+</button>
+
 
                     <?php if ($block->displayProductStockStatus()) : ?>
                         <?php if ($_product->isAvailable()) : ?>
                             <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
                                 <span>&#10003;<?= $block->escapeHtml(__('In stock')) ?></span>
-                                <span class="product-stock-quantity"><?= $stockQuantity->getStockQty($_product->getSku()); ?> items available</span>
+                                <span class="product-stock-quantity"><?= $stockQuantity->getStockQty($_product->getSku()); ?></span>
+                                <span class="product-stock-quantity">items available</span>
                             </div>
                         <?php else : ?>
                             <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
@@ -64,5 +73,5 @@
         }
     }
 
-
 </script>
+

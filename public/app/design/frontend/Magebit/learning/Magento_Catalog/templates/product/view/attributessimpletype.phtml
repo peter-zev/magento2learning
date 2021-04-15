@@ -15,19 +15,24 @@
 <?php
 $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
 $_product = $block->getProduct();
-$allowedAttribute = $block->getData("view_model");
+$allowedAttributes = $block->getData("view_model");
+
 ?>
 <?php if ($_additional = $block->getAdditionalData()) : ?>
+
+    <?php $listOfProductAttributeCodes = array_keys($_additional) ?>
+
     <div class="product-attribute-list">
         <ul>
-            <?php foreach ($_additional as $_data) : ?>
-                <?php if ($allowedAttribute->isAllowed($_data['code'])) : ?>
-                    <li><span class="attribute-label"><?= $block->escapeHtml($_data['label']) ?>: </span><span><?= /* @noEscape */
-                            $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?></span></li>
-                <?php endif; ?>
 
+            <?php foreach ($allowedAttributes->getAttributes($_additional) as $attribute) : ?>
+                <li><span class="attribute-label"><?= $block->escapeHtml($attribute['label']) ?>
+                        : </span><span><?= /* @noEscape */
+                        $_helper->productAttribute($_product, $attribute['value'], $attribute['code']) ?></span>
+                </li>
             <?php endforeach; ?>
+
+
         </ul>
     </div>
-
 <?php endif; ?>

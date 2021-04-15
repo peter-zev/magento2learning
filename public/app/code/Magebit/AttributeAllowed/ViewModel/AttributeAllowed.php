@@ -12,11 +12,33 @@ namespace Magebit\AttributeAllowed\ViewModel;
 class AttributeAllowed implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
 
+    /**
+     * @var array
+     */
     private $allowedAttributes = ["color", "dimensions", "material"];
 
-    public function isAllowed($attribute)
+    /**
+     * @param $productAttributes
+     * @return array
+     */
+    public function getAttributes($productAttributes)
     {
-        return in_array($attribute, $this->allowedAttributes);
+        $attributes = [];
+
+        foreach ($this->allowedAttributes as $attribute) {
+            if (isset($productAttributes[$attribute])) {
+                $attributes[] = $productAttributes[$attribute];
+                unset($productAttributes[$attribute]);
+            }
+        }
+
+        if (sizeof($attributes) == sizeof($this->allowedAttributes)) {
+            return $attributes;
+        }
+
+        $arrayDifference = sizeof($this->allowedAttributes) - sizeof($attributes);
+        return array_merge($attributes, array_slice($productAttributes, 0, $arrayDifference));
+
     }
 
 }
